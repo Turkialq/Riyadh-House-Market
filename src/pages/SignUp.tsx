@@ -25,7 +25,9 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const Submit = (e: HTMLFormElement) => {};
+  const Submit = (e: React.FormEvent) => {
+    const user = {};
+  };
 
   return (
     <React.Fragment>
@@ -42,24 +44,45 @@ export default function SignUp() {
             boxShadow={"lg"}
             p={8}
           >
-            <Stack spacing={4}>
+            <Stack spacing={4} as="form" onSubmit={(e): any => Submit(e)}>
               <HStack>
                 <Box>
                   <FormControl id="lastName" isRequired>
                     <FormLabel textAlign={"right"}>الاسم العايئله</FormLabel>
-                    <Input textAlign={"right"} type="text" />
+                    <Input
+                      textAlign={"right"}
+                      type="text"
+                      value={lastName}
+                      onChange={(e) => {
+                        setLastName(e.target.value);
+                      }}
+                    />
                   </FormControl>
                 </Box>
                 <Box>
                   <FormControl id="firstName">
                     <FormLabel textAlign={"right"}>اسم الاول</FormLabel>
-                    <Input textAlign={"right"} type="text" />
+                    <Input
+                      textAlign={"right"}
+                      type="text"
+                      value={firstName}
+                      onChange={(e) => {
+                        setFirstName(e.target.value);
+                      }}
+                    />
                   </FormControl>
                 </Box>
               </HStack>
               <FormControl id="email" isRequired>
                 <FormLabel textAlign={"right"}>البريد الاكتروني</FormLabel>
-                <Input textAlign={"right"} type="email" />
+                <Input
+                  textAlign={"right"}
+                  type="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                />
               </FormControl>
               <FormControl id="password" isRequired>
                 <FormLabel textAlign={"right"}>كلمة السر</FormLabel>
@@ -67,6 +90,9 @@ export default function SignUp() {
                   <Input
                     textAlign={"right"}
                     type={showPassword ? "text" : "password"}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
                   />
                   <InputRightElement h={"full"}>
                     <Button
